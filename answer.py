@@ -2,8 +2,6 @@
 """
 Python  Functions
 """
-import math
-from math import sqrt
 
 """
 Question 1: 
