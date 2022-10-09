@@ -1,8 +1,6 @@
-import pytest
 import answer
 
 class TestAnswer():
-
     __correct__ = 0
     __total__ = 0
 
@@ -14,125 +12,109 @@ class TestAnswer():
 
     @classmethod
     def teardown_class(cls):
+        print(f"Score:{(cls.__correct__ / cls.__total__) * 100}%")
 
-
-        print(f"Score:{(cls.__correct__/cls.__total__)*100}%")
-    def test_number_x(self):
+    def test_valid_brackets_1(self):
         TestAnswer.__total__ += 1
-        x,y = answer.number()
-        assert(x==1024)
+        result = answer.valid_brackets("()")
+        assert (result == True)
         TestAnswer.__correct__ += 1
-    def test_number_7(self):
+    def test_valid_brackets_2(self):
         TestAnswer.__total__ += 1
-        x,y = answer.number()
-        assert(y==1024/3)
+        result = answer.valid_brackets(")(")
+        assert (result == False)
         TestAnswer.__correct__ += 1
-    def test_string_stevens(self):
+    def test_valid_brackets_3(self):
         TestAnswer.__total__ += 1
-        stevens, stevens_7, length, great, good = answer.strings()
-        assert(stevens=="stevens")
+        result = answer.valid_brackets("(()")
+        assert (result == False)
         TestAnswer.__correct__ += 1
-
-    def test_string_stevens_7(self):
+    def test_valid_brackets_4(self):
         TestAnswer.__total__ += 1
-        stevens, stevens_7, length, great, good = answer.strings()
-        assert(stevens_7=="stevens"*7)
+        result = answer.valid_brackets("(")
+        assert (result == False)
         TestAnswer.__correct__ += 1
-
-    def test_string_stevens_length(self):
+    def test_valid_brackets_5(self):
         TestAnswer.__total__ += 1
-        stevens, stevens_7, length, great, good = answer.strings()
-        assert(length==len(stevens_7))
+        result = answer.valid_brackets("(()())")
+        assert (result == True)
         TestAnswer.__correct__ += 1
-
-    def test_string_stevens_great(self):
+    def test_valid_brackets_6(self):
         TestAnswer.__total__ += 1
-        stevens, stevens_7, length, great, good = answer.strings()
-        assert(great=="stevens is great")
+        result = answer.valid_brackets("")
+        assert (result == True)
         TestAnswer.__correct__ += 1
-
-    def test_string_stevens_good(self):
+    def test_valid_brackets_7(self):
         TestAnswer.__total__ += 1
-        stevens, stevens_7, length, great, good = answer.strings()
-        assert(good=="stevens is good")
+        result = answer.valid_brackets("())")
+        assert (result == False)
         TestAnswer.__correct__ += 1
 
-    def test_list_1D_hoboken(self):
+    def test_is_prime_1(self):
         TestAnswer.__total__ += 1
-        hoboken,hoboken_list, hoboken_first_item, l, new_l = answer.list_1D()
-        assert(hoboken=="hoboken,is,awesome,i,like,it")
+        result = answer.is_prime(97)
+        assert (result == True)
+        TestAnswer.__correct__ += 1
+    def test_is_prime_2(self):
+        TestAnswer.__total__ += 1
+        result = answer.is_prime(1)
+        assert (result == False)
+        TestAnswer.__correct__ += 1
+    def test_is_prime_3(self):
+        TestAnswer.__total__ += 1
+        result = answer.is_prime(42)
+        assert (result == False)
+        TestAnswer.__correct__ += 1
+    def test_is_prime_4(self):
+        TestAnswer.__total__ += 1
+        result = answer.is_prime(9973)
+        assert (result == True)
+        TestAnswer.__correct__ += 1
+    def test_is_prime_5(self):
+        TestAnswer.__total__ += 1
+        result = answer.is_prime(1234567)
+        assert (result == False)
+        TestAnswer.__correct__ += 1
+    def test_is_prime_6(self):
+        TestAnswer.__total__ += 1
+        result = answer.is_prime(987654323)
+        assert (result == True)
         TestAnswer.__correct__ += 1
 
-    def test_list_1D_hoboken_list(self):
+    def test_GCD_1(self):
         TestAnswer.__total__ += 1
-        hoboken,hoboken_list, hoboken_first_item, l, new_l = answer.list_1D()
-        assert(hoboken_list=="hoboken,is,awesome,i,like,it".split(","))
+        result = answer.GCD(123442, 223498)
+        assert (result == 22)
+        TestAnswer.__correct__ += 1
+    def test_GCD_2(self):
+        TestAnswer.__total__ += 1
+        result = answer.GCD(1442,2296)
+        assert (result == 14)
+        TestAnswer.__correct__ += 1
+    def test_GCD_3(self):
+        TestAnswer.__total__ += 1
+        result = answer.GCD(97*97*38*7,97*17*19*7)
+        assert (result == 12901)
+        TestAnswer.__correct__ += 1
+    def test_GCD_4(self):
+        TestAnswer.__total__ += 1
+        result = answer.GCD(42,12)
+        assert (result == 6)
+        TestAnswer.__correct__ += 1
+    def test_GCD_5(self):
+        TestAnswer.__total__ += 1
+        result = answer.GCD(97*7,13*19)
+        assert (result == 1)
         TestAnswer.__correct__ += 1
 
-    def test_list_1D_hoboken_first_item(self):
+    def test_GCD_6(self):
         TestAnswer.__total__ += 1
-        hoboken,hoboken_list, hoboken_first_item, l, new_l = answer.list_1D()
-        assert(hoboken_first_item=="hoboken")
+        result = answer.GCD(6, 12)
+        assert (result == 6)
+        TestAnswer.__correct__ += 1
+    def test_GCD_7(self):
+        TestAnswer.__total__ += 1
+        result = answer.GCD(97, 97)
+        assert (result == 97)
         TestAnswer.__correct__ += 1
 
-    def test_list_1D_l(self):
-        TestAnswer.__total__ += 1
-        hoboken,hoboken_list, hoboken_first_item, l, new_l = answer.list_1D()
-        assert(l==[-6, -2, 0, 0, 1, 2, 3, 4, 5, 6, 9, 10, 12, 13, 15])
-        TestAnswer.__correct__ += 1
-
-    def test_list_1D_new_l(self):
-        TestAnswer.__total__ += 1
-        hoboken,hoboken_list, hoboken_first_item, l, new_l = answer.list_1D()
-        assert(new_l==[0, 1, 2, 3, 4, 5, 6])
-        TestAnswer.__correct__ += 1
-
-    def test_list_2D_A(self):
-        TestAnswer.__total__ += 1
-        A,last_row, a, b = answer.list_2D()
-        assert (A == [[1, 4, 5],
-                    [6, 10, 11],
-                    [12, 17, 38]])
-        TestAnswer.__correct__ += 1
-
-    def test_list_2D_last_row(self):
-        TestAnswer.__total__ += 1
-        A,last_row, a, b = answer.list_2D()
-        assert (last_row == [12, 17, 38])
-        TestAnswer.__correct__ += 1
-
-    def test_list_2D_a(self):
-        TestAnswer.__total__ += 1
-        A,last_row, a, b = answer.list_2D()
-        assert (a == 38)
-        TestAnswer.__correct__ += 1
-
-    def test_list_2D_b(self):
-        TestAnswer.__total__ += 1
-        A,last_row, a, b = answer.list_2D()
-        assert (b == 6)
-        TestAnswer.__correct__ += 1
-
-    def test_dictionary_f(self):
-        TestAnswer.__total__ += 1
-        fruit_dict,f= answer.dictionary()
-        assert(f=="apple")
-        TestAnswer.__correct__ += 1
-
-    def test_dictionary_quantity(self):
-        TestAnswer.__total__ += 1
-        fruit_dict, f= answer.dictionary()
-        assert(fruit_dict["quantity"]==19)
-        TestAnswer.__correct__ += 1
-
-    def test_dictionary_nested_last_name(self):
-        TestAnswer.__total__ += 1
-        Grace,last_name, job= answer.dictionary_nested()
-        assert(last_name=="Hopper")
-        TestAnswer.__correct__ += 1
-
-    def test_dictionary_nested_job(self):
-        TestAnswer.__total__ += 1
-        Grace,last_name, job= answer.dictionary_nested()
-        assert(job=="programmer")
-        TestAnswer.__correct__ += 1
