@@ -38,23 +38,7 @@ Example 7:
  Output: True
 """
 def valid_brackets(s):
- leftSymbols = []
-    # Loop for each character of the string
- for c in s:
-        # If left symbol is encountered
-       if c in ['(', '{', '[']:
-           leftSymbols.append(c)
-        # If right symbol is encountered
-       elif c == ')' and len(leftSymbols) != 0 and leftSymbols[-1] == '(':
-           leftSymbols.pop()
-       elif c == '}' and len(leftSymbols) != 0 and leftSymbols[-1] == '{':
-           leftSymbols.pop()
-       elif c == ']' and len(leftSymbols) != 0 and leftSymbols[-1] == '[':
-           leftSymbols.pop()
-        # If none of the valid symbols is encountered
-       else:
-           return False
- return leftSymbols == []
+ 
 
 
 
@@ -87,18 +71,7 @@ Example 5:
 
 """
 def is_prime(n):
- prime_flag = 0
- if(n > 1):
-    for i in range(2, int(sqrt(n)) + 1):
-        if (n % i == 0):
-            prime_flag = 1
-            break
-    if (prime_flag == 0):
-        return(True)
-    else:
-        return(False)
- else:
-   return(False)
+ 
 
 
 
@@ -128,7 +101,5 @@ Example 4:
 
 
 def GCD(a, b):
- hcf = math.gcd(a,b)
- return(hcf)
 
 
